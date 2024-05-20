@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "800372853175",
+    "project_id": "futuregenai",
+    "storage_bucket": "futuregenai.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:800372853175:android:03e3917b12f9c2891c4032",
+        "android_client_info": {
+          "package_name": "com.example.futuregenai"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCx1Rld5HnddqLdNidDcHJzcGjgazBEVyI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
