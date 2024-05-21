@@ -55,7 +55,7 @@ class MainEngine extends ChangeNotifier {
         await Firebase.initializeApp(
           options: const FirebaseOptions(
             apiKey: firebaseAPI,
-            appId: '1:800372853175:android:03e3917b12f9c2891c4032',
+            appId: firebaseAppID,
             messagingSenderId: 'sendid',
             projectId: 'futuregenai',
             storageBucket: 'myapp-b9yt18.appspot.com',
