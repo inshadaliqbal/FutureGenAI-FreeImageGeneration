@@ -66,7 +66,7 @@ class MainEngine extends ChangeNotifier {
         updateLoadingState(false);
       } catch (e) {
         updateLoadingState(false);
-        showSnackBar(ContentType.help, "Server Error",
+        showSnackBar(ContentType.help, "ServerError",
             "There is an internal error for connecting to the server");
       }
     } else {
