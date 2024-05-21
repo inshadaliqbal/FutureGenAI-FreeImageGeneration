@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
+import 'package:futuregenai/secret_const.dart';
 import 'main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:stability_image_generation/stability_image_generation.dart';
@@ -53,7 +54,7 @@ class MainEngine extends ChangeNotifier {
       try {
         await Firebase.initializeApp(
           options: const FirebaseOptions(
-            apiKey: 'AIzaSyCx1Rld5HnddqLdNidDcHJzcGjgazBEVyI',
+            apiKey: firebaseAPI,
             appId: '1:800372853175:android:03e3917b12f9c2891c4032',
             messagingSenderId: 'sendid',
             projectId: 'futuregenai',
