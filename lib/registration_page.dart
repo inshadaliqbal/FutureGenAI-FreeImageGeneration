@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:blurry_modal_progress_hud/blurry_modal_progress_hud.dart';
+import 'package:futuregenai/api_page.dart';
 import 'provider_engine.dart';
 import 'package:provider/provider.dart';
 import 'extracted_widgets.dart';
@@ -63,6 +64,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 if (await Provider.of<MainEngine>(context, listen: false)
                     .signUP(email, password)) {
                   print('object');
+                  Navigator.pushNamed(context, ApiPage.apiPage);
                 } else {}
               },
             ),

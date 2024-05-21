@@ -6,12 +6,74 @@ import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:stability_image_generation/stability_image_generation.dart';
+import 'dart:io' show Platform;
+import 'package:flutter/foundation.dart';
 
 class MainEngine extends ChangeNotifier {
   bool? loadingBool = false;
   FirebaseAuth? _firebaseAuth;
   String? currentUserEmail;
   FirebaseFirestore? _firestore;
+  StabilityAI? _ai;
+
+
+
+
+
+  Future<Uint8List> imageCreation(String? prompt)async{
+    var data = await _firestore!
+        .collection('users')
+        .doc("$currentUserEmail").get();
+    _ai = await StabilityAI();
+    Uint8List image = await _ai!.generateImage(
+      apiKey: "sk-s3JMDaTZkfxAgjDIiyhxcByK1Nb1hSOQM6ReZqD7VsGtXoTC",
+      imageAIStyle: ImageAIStyle.render3D,
+      prompt: prompt!,
+    );
+    return image;
+
+
+  }
+
+  Future<bool> checkConnection() async {
+    final List<ConnectivityResult> connectivityResult =
+    await (Connectivity().checkConnectivity());
+    if (connectivityResult.contains(ConnectivityResult.mobile) ||
+        connectivityResult.contains(ConnectivityResult.wifi)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  void intializeApp() async {
+    updateLoadingState(true);
+    if (await checkConnection()) {
+      try {
+        await Firebase.initializeApp(
+          options: const FirebaseOptions(
+            apiKey: 'AIzaSyCx1Rld5HnddqLdNidDcHJzcGjgazBEVyI',
+            appId: '1:800372853175:android:03e3917b12f9c2891c4032',
+            messagingSenderId: 'sendid',
+            projectId: 'futuregenai',
+            storageBucket: 'myapp-b9yt18.appspot.com',
+          ),
+        );
+        _firebaseAuth = FirebaseAuth.instance;
+        _firestore = FirebaseFirestore.instance;
+        updateLoadingState(false);
+      } catch (e) {
+        updateLoadingState(false);
+        showSnackBar(ContentType.help, "Server Error",
+            "There is an internal error for connecting to the server");
+      }
+    } else {
+      updateLoadingState(false);
+      showSnackBar(ContentType.failure, "Network Error",
+          "Please check your network connection and try again");
+    }
+  }
 
   Future<bool> signUP(String? email, String? password) async {
     updateLoadingState(true);
@@ -76,50 +138,19 @@ class MainEngine extends ChangeNotifier {
     }
   }
 
+  Future<bool> updateAPI(String? api) async {
+    await _firestore!
+        .collection('users')
+        .doc("$currentUserEmail")
+        .update({"api": "$api"});
+    return true;
+  }
+
   void createCollection() {
     _firestore!
         .collection('users')
         .doc("$currentUserEmail")
         .set({"api": ""});
-  }
-
-  void intializeApp() async {
-    updateLoadingState(true);
-    if (await checkConnection()) {
-      try {
-        await Firebase.initializeApp(
-          options: const FirebaseOptions(
-            apiKey: 'AIzaSyCx1Rld5HnddqLdNidDcHJzcGjgazBEVyI',
-            appId: '1:800372853175:android:03e3917b12f9c2891c4032',
-            messagingSenderId: 'sendid',
-            projectId: 'futuregenai',
-            storageBucket: 'myapp-b9yt18.appspot.com',
-          ),
-        );
-        _firebaseAuth = FirebaseAuth.instance;
-        _firestore = FirebaseFirestore.instance;
-        updateLoadingState(false);
-      } catch (e) {
-        updateLoadingState(false);
-        showSnackBar(ContentType.help, "Server Error",
-            "There is an internal error for connecting to the server");
-      }
-    } else {
-      updateLoadingState(false);
-      showSnackBar(ContentType.failure, "Network Error",
-          "Please check your network connection and try again");
-    }
-  }
-
-  Future<bool> checkConnection() async {
-    final List<ConnectivityResult> connectivityResult =
-        await (Connectivity().checkConnectivity());
-    if (connectivityResult.contains(ConnectivityResult.mobile) ||
-        connectivityResult.contains(ConnectivityResult.wifi)) {
-      return true;
-    } else {
-      return false;
-    }
   }
 
   void updateLoadingState(bool? changeValue) {
