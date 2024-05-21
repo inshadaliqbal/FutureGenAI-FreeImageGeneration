@@ -27,7 +27,7 @@ class MainEngine extends ChangeNotifier {
         .doc("$currentUserEmail").get();
     _ai = await StabilityAI();
     Uint8List image = await _ai!.generateImage(
-      apiKey: "sk-s3JMDaTZkfxAgjDIiyhxcByK1Nb1hSOQM6ReZqD7VsGtXoTC",
+      apiKey: "",
       imageAIStyle: ImageAIStyle.render3D,
       prompt: prompt!,
     );
