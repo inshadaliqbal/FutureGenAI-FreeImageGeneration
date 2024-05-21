@@ -22,7 +22,7 @@ class ApiPage extends StatelessWidget {
             },
           ),
           MainButton(buttonText: 'Proceed', buttonOnPress: () async {
-            if(await Provider.of<MainEngine>(context,listen: false).updateAPI("")){
+            if(await Provider.of<MainEngine>(context,listen: false).updateAPI(" ")){
               Navigator.pushNamed(context, PromptPage.promptPage);
             }
           }),
