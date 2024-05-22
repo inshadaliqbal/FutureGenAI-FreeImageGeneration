@@ -7,7 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:futuregenai/secret_const.dart';
 import 'main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:stability_image_generation/stability_image_generation.dart';
+import 'network.dart';
+import 'package:brain_fusion/brain_fusion.dart';
 import 'dart:io' show Platform;
 import 'package:flutter/foundation.dart';
 
@@ -16,30 +17,26 @@ class MainEngine extends ChangeNotifier {
   FirebaseAuth? _firebaseAuth;
   String? currentUserEmail;
   FirebaseFirestore? _firestore;
-  StabilityAI? _ai;
+  AI? _ai;
 
+  void imageCreation(String? prompt) async {
+    var data =
+        await _firestore!.collection('users').doc("$currentUserEmail").get();
+    // _ai = await AI();
+    // Uint8List image = await _ai!.runAI(prompt!, AIStyle.moreDetails, Resolution.r1x1);
+    // return image;
 
-
-
-
-  Future<Uint8List> imageCreation(String? prompt)async{
-    var data = await _firestore!
-        .collection('users')
-        .doc("$currentUserEmail").get();
-    _ai = await StabilityAI();
-    Uint8List image = await _ai!.generateImage(
-      apiKey: "",
-      imageAIStyle: ImageAIStyle.render3D,
-      prompt: prompt!,
-    );
-    return image;
-
-
+    final api = Text2ImageAPI(
+        'https://api-key.fusionbrain.ai/', aiAPI, aiSecretKey);
+    api.getModel();
+    final uuid = await api.generate("Sun in sky", '1');
+    // final images = await api.checkGeneration(uuid);
+    // print(images);
   }
 
   Future<bool> checkConnection() async {
     final List<ConnectivityResult> connectivityResult =
-    await (Connectivity().checkConnectivity());
+        await (Connectivity().checkConnectivity());
     if (connectivityResult.contains(ConnectivityResult.mobile) ||
         connectivityResult.contains(ConnectivityResult.wifi)) {
       return true;
@@ -148,10 +145,7 @@ class MainEngine extends ChangeNotifier {
   }
 
   void createCollection() {
-    _firestore!
-        .collection('users')
-        .doc("$currentUserEmail")
-        .set({"api": ""});
+    _firestore!.collection('users').doc("$currentUserEmail").set({"api": ""});
   }
 
   void updateLoadingState(bool? changeValue) {
