@@ -19,7 +19,7 @@ class MainEngine extends ChangeNotifier {
   FirebaseFirestore? _firestore;
   AI? _ai;
 
-  void imageCreation(String? prompt) async {
+  Future<Uint8List> imageCreation(String? prompt) async {
     var data =
         await _firestore!.collection('users').doc("$currentUserEmail").get();
     // _ai = await AI();
@@ -28,10 +28,10 @@ class MainEngine extends ChangeNotifier {
 
     final api = Text2ImageAPI(
         'https://api-key.fusionbrain.ai/', aiAPI, aiSecretKey);
-    api.getModel();
-    final uuid = await api.generate("Sun in sky", '1');
-    // final images = await api.checkGeneration(uuid);
-    // print(images);
+    // api.getModel();
+    var uuid = '60d7356a-9861-4bf1-8079-c4b18301d79f';
+    final images = await api.checkGeneration(uuid);
+    return images;
   }
 
   Future<bool> checkConnection() async {
