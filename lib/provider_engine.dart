@@ -19,19 +19,19 @@ class MainEngine extends ChangeNotifier {
   FirebaseFirestore? _firestore;
   AI? _ai;
 
-  Future<Uint8List> imageCreation(String? prompt) async {
-    var data =
-        await _firestore!.collection('users').doc("$currentUserEmail").get();
+  void imageCreation(String? prompt) async {
+    // var data =
+        // await _firestore!.collection('users').doc("$currentUserEmail").get();
     // _ai = await AI();
     // Uint8List image = await _ai!.runAI(prompt!, AIStyle.moreDetails, Resolution.r1x1);
     // return image;
 
     final api = Text2ImageAPI(
         'https://api-key.fusionbrain.ai/', aiAPI, aiSecretKey);
-    // api.getModel();
-    var uuid = '60d7356a-9861-4bf1-8079-c4b18301d79f';
-    final images = await api.checkGeneration(uuid);
-    return images;
+    var model = await api.getModel();
+    var uuid = await api.generate(prompt!, model);
+    // final images = await api.checkGeneration(uuid);
+    // return images;
   }
 
   Future<bool> checkConnection() async {

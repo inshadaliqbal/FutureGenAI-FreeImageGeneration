@@ -10,8 +10,8 @@ class Text2ImageAPI {
   final String apiKey;
   final String secretKey;
   Map<String, String> authHeaders = {
-    'X-Key': 'Key $aiAPI',
-    'X-Secret': 'Secret $aiSecretKey',
+    'X-Key': 'Key 5441B1403EA157ED10CCA4FFC3894247',
+    'X-Secret': 'Secret 9286322093165E4AF68D2CE6BAC80623',
   };
 
   Text2ImageAPI(this.url, this.apiKey, this.secretKey);
@@ -21,7 +21,8 @@ class Text2ImageAPI {
         headers: authHeaders);
 
     final responseBody = response.body;
-    return jsonDecode(responseBody)[0]['id'];
+    print(jsonDecode(responseBody)[0]['id']);
+    return jsonDecode(responseBody)[0]['id'].toString();
   }
 
   Future<String> generate(String prompt, String model,
@@ -34,22 +35,49 @@ class Text2ImageAPI {
       "height": height,
       "generateParams": {"query": prompt}
     };
-    final data = '''{
-      "model_id": None,$model,
-      "params": None,${jsonEncode(params)},"application/json"
-    }''';
+    final data = {
+      'model_id': 'None,$model',
+      'params': 'None,${jsonEncode(params)},application/json'
+    };
 
-    http.Client client = http.Client();
-    http.Response response = await client.post(
+    final body = jsonEncode({
+      'model_id': model,
+      'params': params,
+      'Content-Type': 'application/json'
+    });
+
+    final headers = {
+      'Content-Type': 'application/json',
+      ...authHeaders,
+    };
+
+    try {
+      final response = await http.post(
         Uri.parse('${url}key/api/v1/text2image/run'),
-        headers: authHeaders,
-        body: data);
-    print('Strilll');
-    var responseBody = response.body;
-    print(responseBody);
-    print(jsonDecode(responseBody)["uuid"]);
-    return jsonDecode(responseBody)['uuid'];
-    // Create headers
+        headers: headers,
+        body: body,
+      );
+
+      // Print the status code and response body for debugging
+      print('Response Status Code: ${response.statusCode}');
+      print('Response Body: ${response.body}');
+
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        if (data.containsKey('uuid')) {
+          return data['uuid'];
+        } else {
+          throw Exception('UUID not found in response');
+        }
+      } else if (response.statusCode == 401) {
+        throw Exception('Unauthorized: Check your authentication token and headers.');
+      } else {
+        throw Exception('Failed to generate image: ${response.statusCode} ${response.body}');
+      }
+    } catch (e) {
+      print('Error: $e');
+      rethrow;
+    }
   }
 
 //
