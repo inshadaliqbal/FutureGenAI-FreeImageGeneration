@@ -8,101 +8,107 @@ import 'package:flutter/foundation.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-class Text2ImageAPI {
-  final String url;
-  final String apiKey;
-  final String secretKey;
-
-  Text2ImageAPI(this.url, this.apiKey, this.secretKey);
-
-  Map<String, String> get authHeaders => {
-    'X-Key': 'Key $apiKey',
-    'X-Secret': 'Secret $secretKey',
-  };
-
-  Future<int> getModel() async {
-    final response = await http.get(
-      Uri.parse('$url/key/api/v1/models'),
-      headers: authHeaders,
-    );
-
-    if (response.statusCode == 200) {
-      final data = json.decode(response.body);
-      print(data);
-      return data[0]['id'];
-
-    } else {
-      throw Exception('Failed to load model');
-    }
-  }
-
-  Future<String> generate(
-      String prompt, int model, {
-        int images = 1,
-        int width = 1024,
-        int height = 1024,
-      }) async {
-    final params = {
-      "type": "GENERATE",
-      "numImages": images,
-      "width": width,
-      "height": height,
-      "generateParams": {
-        "query": prompt
-      }
-    };
-
-    final headers = {
-      'Content-Type': 'application/json', // Set content type to JSON
-      ...authHeaders,
-    };
-
-    final response = await http.post(
-      Uri.parse('$url/key/api/v1/text2image/run'),
-      headers: headers,
-      body: json.encode({
-        'model_id': model,
-        'params': params,
-      }),
-    );
-    print(json.decode(response.body));
-    if (response.statusCode == 200) {
-      final data = json.decode(response.body);
-      return data['uuid'];
-    } else {
-      throw Exception('Failed to generate image');
-    }
-  }
-
-  Future<List<String>> checkGeneration(String requestId, {int attempts = 10, int delay = 10}) async {
-    for (int i = 0; i < attempts; i++) {
-      final response = await http.get(
-        Uri.parse('$url/key/api/v1/text2image/status/$requestId'),
-        headers: authHeaders,
-      );
-
-      if (response.statusCode == 200) {
-        final data = json.decode(response.body);
-        if (data['status'] == 'DONE') {
-          return List<String>.from(data['images']);
-        }
-      }
-
-      if (i < attempts - 1) {
-        await Future.delayed(Duration(seconds: delay));
-      }
-    }
-
-    throw Exception('Image generation failed or timed out');
-  }
+Future<Uint8List> getData(String prompt) async {
+  http.Response response =
+      await http.get(Uri.parse('http://10.0.2.2:5000/api?prompt="$prompt"'));
+  print(response.body);
+  var uin = jsonDecode(response.body);
+  return base64.decode(uin[0]);
 }
 
-
-
-
-
-
-
+// class Text2ImageAPI {
+//   final String url;
+//   final String apiKey;
+//   final String secretKey;
+//
+//   Text2ImageAPI(this.url, this.apiKey, this.secretKey);
+//
+//   Map<String, String> get authHeaders => {
+//     'X-Key': 'Key $apiKey',
+//     'X-Secret': 'Secret $secretKey',
+//   };
+//
+//   Future<int> getModel() async {
+//     final response = await http.get(
+//       Uri.parse('$url/key/api/v1/models'),
+//       headers: authHeaders,
+//     );
+//
+//     if (response.statusCode == 200) {
+//       final data = json.decode(response.body);
+//       print(data);
+//       return data[0]['id'];
+//
+//     } else {
+//       throw Exception('Failed to load model');
+//     }
+//   }
+//
+//   Future<String> generate(
+//       String prompt, int model, {
+//         int images = 1,
+//         int width = 1024,
+//         int height = 1024,
+//       }) async {
+//     final params = {
+//       "type": "GENERATE",
+//       "numImages": images,
+//       "width": width,
+//       "height": height,
+//       "generateParams": {
+//         "query": prompt
+//       }
+//     };
+//
+//     final headers = {
+//       'Content-Type': 'application/json', // Set content type to JSON
+//       ...authHeaders,
+//     };
+//
+//     final response = await http.post(
+//       Uri.parse('$url/key/api/v1/text2image/run'),
+//       headers: headers,
+//       body: json.encode({
+//         'model_id': model,
+//         'params': params,
+//       }),
+//     );
+//     print(json.decode(response.body));
+//     if (response.statusCode == 200) {
+//       final data = json.decode(response.body);
+//       return data['uuid'];
+//     } else {
+//       throw Exception('Failed to generate image');
+//     }
+//   }
+//
+//   Future<List<String>> checkGeneration(String requestId, {int attempts = 10, int delay = 10}) async {
+//     for (int i = 0; i < attempts; i++) {
+//       final response = await http.get(
+//         Uri.parse('$url/key/api/v1/text2image/status/$requestId'),
+//         headers: authHeaders,
+//       );
+//
+//       if (response.statusCode == 200) {
+//         final data = json.decode(response.body);
+//         if (data['status'] == 'DONE') {
+//           return List<String>.from(data['images']);
+//         }
+//       }
+//
+//       if (i < attempts - 1) {
+//         await Future.delayed(Duration(seconds: delay));
+//       }
+//     }
+//
+//     throw Exception('Image generation failed or timed out');
+//   }
+// }
+//
+//
+//
+//
+//
 
 // class Text2ImageAPI {
 //   final String url;
