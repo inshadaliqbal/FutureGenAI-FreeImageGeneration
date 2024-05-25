@@ -27,10 +27,10 @@ class MainEngine extends ChangeNotifier {
     // return image;
 
     final api = Text2ImageAPI(
-        'https://api-key.fusionbrain.ai/', aiAPI, aiSecretKey);
+        'https://api-key.fusionbrain.ai', aiAPI, aiSecretKey);
     var model = await api.getModel();
-    var uuid = await api.generate(prompt!, model);
-    // final images = await api.checkGeneration(uuid);
+    var uuid = await api.generate("lamborghini", model);
+    final images = await api.checkGeneration(uuid);
     // return images;
   }
 
