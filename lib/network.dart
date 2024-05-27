@@ -4,11 +4,13 @@ import 'dart:async';
 import 'package:futuregenai/secret_const.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/foundation.dart';
+import 'package:serious_python/serious_python.dart';
 
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 Future<Uint8List> getData(String prompt) async {
+  SeriousPython.run('app/',appFileName: 'app.py');
   http.Response response =
       await http.get(Uri.parse('http://10.0.2.2:5000/api?prompt="$prompt"'));
   print(response.body);
