@@ -8,7 +8,6 @@ import 'package:futuregenai/secret_const.dart';
 import 'main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'network.dart';
-import 'package:brain_fusion/brain_fusion.dart';
 import 'dart:io' show Platform;
 import 'package:flutter/foundation.dart';
 
@@ -17,7 +16,6 @@ class MainEngine extends ChangeNotifier {
   FirebaseAuth? _firebaseAuth;
   String? currentUserEmail;
   FirebaseFirestore? _firestore;
-  AI? _ai;
 
   Future<Uint8List> imageCreation(String? prompt) async {
     // var data =

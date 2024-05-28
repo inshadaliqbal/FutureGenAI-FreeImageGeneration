@@ -1,21 +1,23 @@
 import 'dart:convert';
+
 import 'dart:io';
 import 'dart:async';
 import 'package:futuregenai/secret_const.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/foundation.dart';
-import 'package:serious_python/serious_python.dart';
+import 'package:together_ai_sdk/together_ai_sdk.dart';
 
-import 'dart:convert';
-import 'package:http/http.dart' as http;
 
 Future<Uint8List> getData(String prompt) async {
-  SeriousPython.run('app/',appFileName: 'app.py');
+  final togetherAI = TogetherAISdk(
+    togetheraiAPI,
+  );
   http.Response response =
-      await http.get(Uri.parse('http://10.0.2.2:5000/api?prompt="$prompt"'));
-  print(response.body);
-  var uin = jsonDecode(response.body);
-  return base64.decode(uin[0]);
+      await http.get(Uri.parse('https://malludev.pythonanywhere.com/?prompt="$prompt"'));
+  final imageResponse = await togetherAI.imageGeneration(prompt, imageModel: ImageModel.realisticVision3_0);
+
+  print(imageResponse!.data[0].b64Json);
+  return base64.decode(imageResponse.data[0].b64Json);
 }
 
 // class Text2ImageAPI {
