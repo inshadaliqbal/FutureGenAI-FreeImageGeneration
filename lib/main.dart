@@ -23,7 +23,7 @@ class FutureGenAI extends StatelessWidget {
       builder: (context,MainEngine){
         return MaterialApp(
           navigatorKey: navigatorKey,
-          initialRoute: PromptPage.promptPage,
+          initialRoute: WelcomePage.welcomePage,
           routes: {
             WelcomePage.welcomePage : (context) => const WelcomePage(),
             AuthenticationPage.authenticationPage:(context)=> const AuthenticationPage(),

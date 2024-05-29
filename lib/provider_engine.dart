@@ -16,22 +16,31 @@ class MainEngine extends ChangeNotifier {
   FirebaseAuth? _firebaseAuth;
   String? currentUserEmail;
   FirebaseFirestore? _firestore;
+  Uint8List? welcomePageBG;
 
   Future<Uint8List> imageCreation(String? prompt) async {
-    // var data =
-        // await _firestore!.collection('users').doc("$currentUserEmail").get();
-    // _ai = await AI();
-    // Uint8List image = await _ai!.runAI(prompt!, AIStyle.moreDetails, Resolution.r1x1);
-    // return image;
     Uint8List image = await getData(prompt!);
     return image;
-    // final api = Text2ImageAPI(
-    //     'https://api-key.fusionbrain.ai', aiAPI, aiSecretKey);
-    // var model = await api.getModel();
-    // var uuid = await api.generate("lamborghini", model);
-    // final images = await api.checkGeneration(uuid);
-    // return images;
   }
+
+  Future<Uint8List?> imageCreationForBackground() async {
+
+    if (await checkConnection()) {
+      try {
+        Uint8List image = await getData('Blueish AI Robot planet with Alien Infront of the view');
+        return image;
+      } catch (e) {
+        showSnackBar(ContentType.failure, "Failed", "$e");
+        return null; // Return null in case of error
+      }
+    } else {
+      updateLoadingState(false);
+      showSnackBar(ContentType.failure, "Network Error",
+          "Please check your network connection and try again");
+      return null; // Return null if there is no network connection
+    }
+  }
+
 
   Future<bool> checkConnection() async {
     final List<ConnectivityResult> connectivityResult =
