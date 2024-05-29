@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
@@ -20,6 +22,10 @@ class MainEngine extends ChangeNotifier {
 
   Future<Uint8List> imageCreation(String? prompt) async {
     Uint8List image = await getData(prompt!);
+    await _firestore!
+        .collection('users')
+        .doc("$currentUserEmail")
+        .collection('prompts').add({"prompts": base64Encode(image)});
     return image;
   }
 
@@ -34,7 +40,6 @@ class MainEngine extends ChangeNotifier {
         return null; // Return null in case of error
       }
     } else {
-      updateLoadingState(false);
       showSnackBar(ContentType.failure, "Network Error",
           "Please check your network connection and try again");
       return null; // Return null if there is no network connection
@@ -153,7 +158,7 @@ class MainEngine extends ChangeNotifier {
   }
 
   void createCollection() {
-    _firestore!.collection('users').doc("$currentUserEmail").set({"api": ""});
+    _firestore!.collection('users').doc("$currentUserEmail").set({"promptID": ""});
   }
 
   void updateLoadingState(bool? changeValue) {

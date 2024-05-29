@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:futuregenai/api_page.dart';
 import 'buttons.dart';
 import 'extracted_widgets.dart';
 import 'package:blurry_modal_progress_hud/blurry_modal_progress_hud.dart';
@@ -51,12 +52,12 @@ class LoginPage extends StatelessWidget {
             ),
             MainButton(
               buttonColor: Colors.blueAccent.shade200,
-              buttonText: 'REGISTER',
+              buttonText: 'Sign IN',
               buttonOnPress: () async {
                 // Performing user registration and navigating to task screen if successful
                 if (await Provider.of<MainEngine>(context, listen: false)
                     .signIN(email, password)) {
-                  print('object');
+                  Navigator.pushNamed(context, ApiPage.apiPage);
                 } else {}
               },
             ),
