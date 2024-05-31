@@ -8,6 +8,7 @@ import 'package:futuregenai/provider_engine.dart';
 import 'package:futuregenai/registration_page.dart';
 import 'package:futuregenai/welcome_page.dart';
 import 'package:provider/provider.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 void main() {
   runApp(FutureGenAI());
@@ -15,6 +16,7 @@ void main() {
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 class FutureGenAI extends StatelessWidget {
+
   FutureGenAI({super.key});
   @override
   Widget build(BuildContext context) {

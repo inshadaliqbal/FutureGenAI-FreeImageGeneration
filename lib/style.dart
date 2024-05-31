@@ -54,13 +54,13 @@ InputDecoration MainTextFieldInputDecoration(String? label) {
 
 
 BoxDecoration kMainButtonContainerDecoration = BoxDecoration(
-  borderRadius: BorderRadius.circular(10),
-  boxShadow: const [
-    BoxShadow(
-      color: Colors.black,
-      offset: Offset(5, 5),
-      blurRadius: 0,
-      spreadRadius: 0,
-    ),
-  ],
+  gradient: LinearGradient(
+    colors: [
+      Color(0xFF8A2BE2),
+      Color(0xFFFF69B4)
+    ], // Violet to pink gradient
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+  ),
+  borderRadius: BorderRadius.circular(30),
 );
