@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:blurry_modal_progress_hud/blurry_modal_progress_hud.dart';
+import 'package:futuregenai/history_page.dart';
 import 'package:futuregenai/login_page.dart';
 import 'package:futuregenai/registration_page.dart';
 import 'provider_engine.dart';
@@ -110,6 +111,8 @@ class AuthenticationPage extends StatelessWidget {
                             ),
                             onPressed: () {
                               Navigator.pushNamed(context, LoginPage.loginPage);
+                              // Provider.of<MainEngine>(context,listen: false).updateSnapshot();
+                              // Navigator.pushNamed(context, HistoryPage.history_page);
                             },
                             child: Text(
                               'Sign IN',

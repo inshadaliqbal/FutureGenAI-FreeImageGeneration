@@ -19,6 +19,7 @@ class MainEngine extends ChangeNotifier {
   String? currentUserEmail;
   FirebaseFirestore? _firestore;
   Uint8List? welcomePageBG;
+  var streamFirestoreSnapshot;
 
   Future<Uint8List> imageCreation(String? prompt) async {
     Uint8List image = await getData(prompt!);
@@ -26,6 +27,7 @@ class MainEngine extends ChangeNotifier {
         .collection('users')
         .doc("$currentUserEmail")
         .collection('prompts').add({"prompts": base64Encode(image)});
+    updateSnapshot();
     return image;
   }
 
@@ -168,6 +170,14 @@ class MainEngine extends ChangeNotifier {
 
   bool? getLoadingBool() {
     return loadingBool;
+  }
+
+  void updateSnapshot(){
+    streamFirestoreSnapshot = _firestore!
+        .collection('users')
+        .doc(currentUserEmail)
+        .collection("prompts")
+        .snapshots();
   }
 
   void showSnackBar(
