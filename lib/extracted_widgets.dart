@@ -1,5 +1,7 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'style.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class MainTextField extends StatelessWidget {
   Function changeFunction;
@@ -115,5 +117,71 @@ String? _validatePassword(String? value) {
 }
 
 
+class ProgressIndicatorContainer extends StatelessWidget {
+  const ProgressIndicatorContainer({
+    super.key,
+  });
 
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      constraints: BoxConstraints(
+        maxHeight: 200,
+        maxWidth: 300,
+        minHeight: 100,
+        minWidth: 100,
+      ),
+      decoration: BoxDecoration(
+        color: Colors.white.withOpacity(0.5),
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Column(
+        children: [
+          Text(
+            'Loading Please Wait',
+            style: TextStyle(fontSize: 20),
+          ),
+          SpinKitFadingCircle(
+            color: Colors.white,
+            size: 50.0,
+          ),
+        ],
+      ),
+    );
+  }
+}
 
+class GradientContainer extends StatelessWidget {
+  const GradientContainer({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [Colors.transparent, Colors.black], // Violet to pink gradient
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+        ),
+      ),
+    );
+  }
+}
+
+class ImageCard extends StatelessWidget {
+  Uint8List? imageBytes;
+  ImageCard({super.key, @required this.imageBytes});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        image: DecorationImage(
+            image: MemoryImage(imageBytes!), fit: BoxFit.fitHeight),
+      ),
+    );
+  }
+}

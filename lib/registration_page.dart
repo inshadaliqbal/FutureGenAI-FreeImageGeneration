@@ -57,9 +57,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
               },
             ),
             MainButton(
-              buttonColor: Colors.blueAccent.shade200,
               buttonText: 'REGISTER',
-              buttonOnPress: () async {
+              buttonFunction: () async {
                 // Performing user registration and navigating to task screen if successful
                 if (await Provider.of<MainEngine>(context, listen: false)
                     .signUP(email, password)) {

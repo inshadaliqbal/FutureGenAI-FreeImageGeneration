@@ -49,12 +49,12 @@ class ImagePage extends StatelessWidget {
                   ),
                   MainButton(
                       buttonText: 'Download',
-                      buttonOnPress: () {
+                      buttonFunction: () {
                         saveImage(snapshot.data!);
                       }),
-                  MainButton(buttonText: 'History', buttonOnPress: () {
+                  MainButton(buttonText: 'History', buttonFunction: () {
                     Navigator.pushNamed(context, HistoryPage.history_page);
-                  })
+                  }),
                 ],
               );
             } else {

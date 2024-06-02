@@ -25,7 +25,7 @@ class PromptPage extends StatelessWidget {
                 }),
             MainButton(
                 buttonText: 'Proceed',
-                buttonOnPress: () {
+                buttonFunction: () {
                   Provider.of<MainEngine>(context,listen: false).imageCreation('prompt');
                   Navigator.push(
                     context,

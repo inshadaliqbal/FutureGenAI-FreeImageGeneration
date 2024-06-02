@@ -51,9 +51,8 @@ class LoginPage extends StatelessWidget {
               },
             ),
             MainButton(
-              buttonColor: Colors.blueAccent.shade200,
               buttonText: 'Sign IN',
-              buttonOnPress: () async {
+              buttonFunction: () async {
                 // Performing user registration and navigating to task screen if successful
                 if (await Provider.of<MainEngine>(context, listen: false)
                     .signIN(email, password)) {

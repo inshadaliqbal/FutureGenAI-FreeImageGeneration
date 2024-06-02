@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:futuregenai/prompt_page.dart';
-import 'provider_engine.dart';
-import 'package:provider/provider.dart';
 import 'extracted_widgets.dart';
 import 'buttons.dart';
 
@@ -23,7 +21,7 @@ class ApiPage extends StatelessWidget {
           ),
           MainButton(
               buttonText: 'Proceed',
-              buttonOnPress: () {
+              buttonFunction: () {
                 Navigator.pushNamed(context, PromptPage.promptPage);
               }),
         ],
