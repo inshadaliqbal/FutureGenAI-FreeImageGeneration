@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:blurry_modal_progress_hud/blurry_modal_progress_hud.dart';
-import 'package:futuregenai/api_page.dart';
+import 'package:futuregenai/prompt_page.dart';
 import 'provider_engine.dart';
 import 'package:provider/provider.dart';
 import 'extracted_widgets.dart';
@@ -22,22 +21,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFFFF2E1),
-      body: BlurryModalProgressHUD(
-        inAsyncCall: Provider.of<MainEngine>(context).getLoadingBool(),
-        blurEffectIntensity: 4,
-        progressIndicator: Container(
-          constraints: BoxConstraints(
-            maxHeight: 200,
-            maxWidth: 300,
-            minHeight: 100,
-            minWidth: 100,
-          ),
-          decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.5),
-            borderRadius: BorderRadius.circular(20),
-          ),
-        ),
-        child: Column(
+      body: BlurryHUD(
+        childWidget: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -62,8 +47,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 // Performing user registration and navigating to task screen if successful
                 if (await Provider.of<MainEngine>(context, listen: false)
                     .signUP(email, password)) {
-                  print('object');
-                  Navigator.pushNamed(context, ApiPage.apiPage);
+                  Navigator.pushNamed(context, PromptPage.promptPage);
                 } else {}
               },
             ),

@@ -4,8 +4,6 @@ import 'package:futuregenai/image_page.dart';
 import 'extracted_widgets.dart';
 import 'provider_engine.dart';
 import 'package:provider/provider.dart';
-import 'dart:io' show Platform;
-import 'package:flutter/foundation.dart';
 
 class PromptPage extends StatelessWidget {
   static const promptPage = 'prompt_page';
@@ -24,16 +22,20 @@ class PromptPage extends StatelessWidget {
                   inputPrompt = value;
                 }),
             MainButton(
-                buttonText: 'Proceed',
-                buttonFunction: () {
-                  Provider.of<MainEngine>(context,listen: false).imageCreation('prompt');
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) {
+              buttonText: 'Proceed',
+              buttonFunction: () {
+                Provider.of<MainEngine>(context, listen: false)
+                    .imageCreation('prompt');
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
                       return ImagePage(prompt: inputPrompt);
-                    }),
-                  );
-                })
+                    },
+                  ),
+                );
+              },
+            ),
           ],
         ),
       ),

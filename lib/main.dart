@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:futuregenai/api_page.dart';
 import 'package:futuregenai/authentication_page.dart';
 import 'package:futuregenai/history_page.dart';
 import 'package:futuregenai/image_page.dart';
@@ -32,7 +31,6 @@ class FutureGenAI extends StatelessWidget {
             AuthenticationPage.authenticationPage:(context)=> const AuthenticationPage(),
             RegistrationPage.registrationScreen : (context) => const RegistrationPage(),
             LoginPage.loginPage: (context) => LoginPage(),
-            ApiPage.apiPage:(context) => ApiPage(),
             PromptPage.promptPage:(context) => PromptPage(),
             ImagePage.imagePage:(context) => ImagePage(prompt: '',),
             HistoryPage.history_page:(context)=> HistoryPage(),

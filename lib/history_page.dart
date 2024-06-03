@@ -1,5 +1,7 @@
 import 'dart:convert';
 import 'dart:typed_data';
+import 'package:futuregenai/extracted_widgets.dart';
+
 import 'functions.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +15,7 @@ class HistoryPage extends StatefulWidget {
   @override
   State<HistoryPage> createState() => _HistoryPageState();
 }
+
 class _HistoryPageState extends State<HistoryPage> {
   @override
   Widget build(BuildContext context) {
@@ -38,27 +41,21 @@ class _HistoryPageState extends State<HistoryPage> {
                 itemCount: data.length,
                 itemBuilder: (context, index) {
                   try {
-                    Uint8List historyData = base64Decode(data[index]["prompts"]);
+                    Uint8List historyData =
+                        base64Decode(data[index]["prompts"]);
                     return GestureDetector(
-                      onLongPress: (){
+                      onLongPress: () {
                         saveImage(historyData);
                       },
-                      child: Container(
-                        height: 400,
-                        margin: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(40),
-                          image: DecorationImage(
-                            image: MemoryImage(historyData),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
+                      child: MainImageCard(
+                        imagePath: MemoryImage(historyData),
                       ),
                     );
                   } catch (e) {
                     print('Error decoding image: $e');
                     return Container(
-                      margin: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+                      margin:
+                          EdgeInsets.symmetric(vertical: 20, horizontal: 10),
                       color: Colors.grey[300],
                       child: Center(
                         child: Text('Error loading image'),

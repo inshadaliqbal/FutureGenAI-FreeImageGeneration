@@ -2,6 +2,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'style.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:blurry_modal_progress_hud/blurry_modal_progress_hud.dart';
+import 'provider_engine.dart';
+import 'package:provider/provider.dart';
+
+
 
 class MainTextField extends StatelessWidget {
   Function changeFunction;
@@ -170,6 +175,27 @@ class GradientContainer extends StatelessWidget {
   }
 }
 
+class BlurryHUD extends StatelessWidget {
+  Widget childWidget;
+
+  BlurryHUD({super.key, required this.childWidget});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlurryModalProgressHUD(
+      inAsyncCall: Provider.of<MainEngine>(context).getLoadingBool(),
+      blurEffectIntensity: 4,
+      progressIndicator: ProgressIndicatorContainer(),
+      dismissible: false,
+      opacity: 0.4,
+      color: Colors.black,
+      child: childWidget,
+    );
+  }
+}
+
+
+
 class ImageCard extends StatelessWidget {
   Uint8List? imageBytes;
   ImageCard({super.key, @required this.imageBytes});
@@ -181,6 +207,46 @@ class ImageCard extends StatelessWidget {
       decoration: BoxDecoration(
         image: DecorationImage(
             image: MemoryImage(imageBytes!), fit: BoxFit.fitHeight),
+      ),
+    );
+  }
+}
+
+class BackgroundImage extends StatelessWidget {
+
+  String imagePath;
+  BackgroundImage({
+    super.key,required this.imagePath
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        image: DecorationImage(
+            image: AssetImage(
+              imagePath,
+            ),
+            fit: BoxFit.cover),
+      ),
+    );
+  }
+}
+
+
+class MainImageCard extends StatelessWidget {
+  ImageProvider imagePath;
+
+  MainImageCard({super.key, required this.imagePath});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(40),
+        image: DecorationImage(image: imagePath, fit: BoxFit.cover),
       ),
     );
   }
