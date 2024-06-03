@@ -41,6 +41,29 @@ InputDecoration MainTextFieldInputDecoration(String? label) {
   );
 }
 
+InputDecoration PromptTextFieldInputDecoration(String? label) {
+  return InputDecoration(
+    alignLabelWithHint: true,
+    labelText: label,
+    labelStyle: const TextStyle(letterSpacing: 3,),
+    filled: true,
+    fillColor: Colors.white,
+    border: OutlineInputBorder(
+      borderSide: const BorderSide(width: 1, color: Colors.black),
+      borderRadius: BorderRadius.circular(20),
+    ),
+    enabledBorder: OutlineInputBorder(
+      borderSide: const BorderSide(width: 1, color: Colors.black),
+      borderRadius: BorderRadius.circular(20),
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderSide: const BorderSide(width: 1, color: Colors.black),
+      borderRadius: BorderRadius.circular(10),
+    ),
+    contentPadding: const EdgeInsets.symmetric(horizontal: 10),
+  );
+}
+
 
 BoxDecoration kMainButtonContainerDecoration = BoxDecoration(
   gradient: LinearGradient(

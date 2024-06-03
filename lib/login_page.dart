@@ -63,9 +63,19 @@ class LoginPage extends StatelessWidget {
                     MainButton(
                       buttonText: 'Sign IN',
                       buttonFunction: () async {
-                        if (await Provider.of<MainEngine>(context, listen: false)
-                            .signIN(email, password)) {
-                          Navigator.pushNamed(context, PromptPage.promptPage);
+                        List returnedData = await Provider.of<MainEngine>(
+                            context,
+                            listen: false)
+                            .signIN(email, password);
+                        if (returnedData[1]) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return PromptPage(imagePath: returnedData[0]);
+                              },
+                            ),
+                          );
                         } else {}
                       },
                     ),

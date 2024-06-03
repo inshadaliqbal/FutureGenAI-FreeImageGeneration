@@ -31,7 +31,6 @@ class FutureGenAI extends StatelessWidget {
             AuthenticationPage.authenticationPage:(context)=> const AuthenticationPage(),
             RegistrationPage.registrationScreen : (context) => const RegistrationPage(),
             LoginPage.loginPage: (context) => LoginPage(),
-            PromptPage.promptPage:(context) => PromptPage(),
             ImagePage.imagePage:(context) => ImagePage(prompt: '',),
             HistoryPage.history_page:(context)=> HistoryPage(),
           },

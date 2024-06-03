@@ -20,10 +20,17 @@ class _HistoryPageState extends State<HistoryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('History'),
+
+      appBar:  AppBar(
+        automaticallyImplyLeading: false,
+        backgroundColor: Colors.transparent,
+        title: Center(
+          child: Text(
+            'History',style: TextStyle(fontFamily: 'highland',color: Colors.white),
+          ),
+        ),
       ),
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.black,
       body: Container(
         margin: EdgeInsets.all(10),
         child: StreamBuilder<QuerySnapshot>(
@@ -44,6 +51,7 @@ class _HistoryPageState extends State<HistoryPage> {
                     Uint8List historyData =
                         base64Decode(data[index]["prompts"]);
                     return Container(
+                      margin: EdgeInsets.all(10),
                       constraints: BoxConstraints(minWidth: 200,minHeight: 400),
                       child: GestureDetector(
                         onLongPress: () {

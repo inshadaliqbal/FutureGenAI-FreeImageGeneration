@@ -27,19 +27,18 @@ class _RegistrationPageState extends State<RegistrationPage> {
       body: SafeArea(
         child: BlurryHUD(
           childWidget: Padding(
-
-            padding: const EdgeInsets.symmetric(vertical: 30.0,horizontal: 10.0),
+            padding:
+                const EdgeInsets.symmetric(vertical: 30.0, horizontal: 10.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(bottom: 150.0,top: 50),
+                      padding: const EdgeInsets.only(bottom: 150.0, top: 50),
                       child: Text(
                         'Welcome!',
                         style: kMainTextstyleWelcomePage,
@@ -67,9 +66,19 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     MainButton(
                       buttonText: 'REGISTER',
                       buttonFunction: () async {
-                        if (await Provider.of<MainEngine>(context, listen: false)
-                            .signUP(email, password)) {
-                          Navigator.pushNamed(context, PromptPage.promptPage);
+                        List returnedData = await Provider.of<MainEngine>(
+                                context,
+                                listen: false)
+                            .signUP(email, password);
+                        if (returnedData[1]) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return PromptPage(imagePath: returnedData[0]);
+                              },
+                            ),
+                          );
                         } else {}
                       },
                     ),
@@ -85,8 +94,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     GestureDetector(
                       onTap: () {
                         Navigator.pop(context);
-                        Navigator.pushNamed(
-                            context, LoginPage.loginPage);
+                        Navigator.pushNamed(context, LoginPage.loginPage);
                       },
                       child: Text(
                         'Sign IN',

@@ -65,6 +65,33 @@ class MainTextFieldAPI extends StatelessWidget {
   }
 }
 
+class PromptTextField extends StatelessWidget {
+  Function changeFunction;
+  String? label;
+  final _formKey = GlobalKey<FormState>();
+
+  PromptTextField({super.key, required this.label, required this.changeFunction});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 10),
+      child: Form(
+        key: _formKey,
+        child: TextFormField(
+          maxLines: 7,
+          keyboardType: TextInputType.multiline,
+          onChanged: (value) {
+            changeFunction(value);
+          },
+          textAlign: TextAlign.left,
+          decoration: PromptTextFieldInputDecoration(label),
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+        ),
+      ),
+    );
+  }
+}
 
 class MainTextFieldPassword extends StatelessWidget {
   Function changeFunction;
@@ -243,7 +270,7 @@ class MainImageCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+      constraints: BoxConstraints(minWidth: 200,minHeight: 100,maxHeight: 200),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(40),
         image: DecorationImage(image: imagePath, fit: BoxFit.cover),

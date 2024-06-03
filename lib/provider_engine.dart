@@ -38,7 +38,7 @@ class MainEngine extends ChangeNotifier {
         Uint8List image = await getData('Blueish AI Robot planet with Alien Infront of the view');
         return image;
       } catch (e) {
-        showSnackBar(ContentType.failure, "Failed", "$e");
+        showSnackBar(ContentType.failure, "Failed", "$e  hellooooooooo");
         return null; // Return null in case of error
       }
     } else {
@@ -88,39 +88,38 @@ class MainEngine extends ChangeNotifier {
     }
   }
 
-  Future<bool> signUP(String? email, String? password) async {
+  Future<List> signUP(String? email, String? password) async {
     updateLoadingState(true);
     if (await checkConnection()) {
       try {
-        print('reached here');
         final newUser = await _firebaseAuth!
             .createUserWithEmailAndPassword(email: email!, password: password!);
-
         if (newUser != null) {
           currentUserEmail = email;
           createCollection();
-          updateLoadingState(false);
           showSnackBar(ContentType.success, "Success", "Successfully SignedUP");
-          return true;
+          Uint8List imagePath = await imageCreation('a futuristic lady potrait in an artistic view');
+          updateLoadingState(false);
+          return [imagePath,true];
         } else {
           updateLoadingState(false);
           showSnackBar(ContentType.failure, "Failed", "Failed to create user");
-          return false;
+          return [null,false];
         }
       } catch (e) {
         updateLoadingState(false);
         showSnackBar(ContentType.failure, "Failed", "$e");
-        return false;
+        return [null,false];
       }
     } else {
       updateLoadingState(false);
       showSnackBar(ContentType.failure, "Network Error",
           "Please check your network connection and try again");
-      return false;
+      return [null,false];
     }
   }
 
-  Future<bool> signIN(String? email, String? password) async {
+  Future<List> signIN(String? email, String? password) async {
     updateLoadingState(true);
     if (await checkConnection()) {
       try {
@@ -129,25 +128,26 @@ class MainEngine extends ChangeNotifier {
 
         if (user != null) {
           currentUserEmail = email;
-          updateLoadingState(false);
           showSnackBar(
               ContentType.success, "Success", "Successfully Signed In");
-          return true;
+          Uint8List imagePath = await imageCreation('a futuristic lady potrait in an artistic view');
+          updateLoadingState(false);
+          return [imagePath,true];
         } else {
           updateLoadingState(false);
           showSnackBar(ContentType.failure, "Failed", "Failed to Sign In");
-          return false;
+          return [null,false];
         }
       } catch (e) {
         updateLoadingState(false);
         showSnackBar(ContentType.failure, "Failed", "$e");
-        return false;
+        return [null,false];
       }
     } else {
       updateLoadingState(false);
       showSnackBar(ContentType.failure, "Network Error",
           "Please check your network connection and try again");
-      return false;
+      return [null,false];
     }
   }
 
