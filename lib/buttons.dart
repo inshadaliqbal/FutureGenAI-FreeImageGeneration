@@ -38,9 +38,10 @@ class MainButton extends StatelessWidget {
           buttonText!,
           style: TextStyle(
             color: Colors.white,
-            fontSize: 25,
+            fontSize: 15,
             fontWeight: FontWeight.w400,
             letterSpacing: 2,
+            fontFamily: 'highland'
           ),
         ),
       ),

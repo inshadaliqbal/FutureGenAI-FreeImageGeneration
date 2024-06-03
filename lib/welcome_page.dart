@@ -44,14 +44,17 @@ class _WelcomePageState extends State<WelcomePage> {
                 ),
                 GradientContainer(),
                 Padding(
-                  padding: const EdgeInsets.all(10.0),
+                  padding: const EdgeInsets.symmetric(vertical: 30.0,horizontal: 20.0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       const Text(
-                        'Generate Art From Text',
+                        'Imagination to Image',
                         style: kMainTextstyleWelcomePage,
+                      ),
+                      SizedBox(
+                        height: 30,
                       ),
                       MainButton(
                         buttonFunction: () {

@@ -16,18 +16,20 @@ class AuthenticationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
         body: BlurryHUD(
       childWidget: Stack(children: [
         BackgroundImage(imagePath: 'images/bg2.jpeg',),
         GradientContainer(),
         Padding(
-          padding: const EdgeInsets.all(10.0),
+          padding: const EdgeInsets.symmetric(vertical: 30.0,horizontal: 20.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text('Welcome...Show your creativity',
                   style: kMainTextstyleWelcomePage),
+              SizedBox(height: 30,),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [

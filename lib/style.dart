@@ -2,17 +2,6 @@
 import 'package:flutter/material.dart';
 
 
-BoxDecoration kMainTextFieldBoxDecoration = BoxDecoration(
-  borderRadius: BorderRadius.circular(10),
-  boxShadow: const [
-    BoxShadow(
-      color: Colors.black,
-      offset: Offset(5, 5),
-      blurRadius: 0,
-      spreadRadius: 0,
-    ),
-  ],
-);
 
 
 ButtonStyle kMainButtonStyle = ButtonStyle(
@@ -35,17 +24,17 @@ InputDecoration MainTextFieldInputDecoration(String? label) {
     labelText: label,
     labelStyle: const TextStyle(letterSpacing: 3),
     filled: true,
-    fillColor: Colors.white,
+    fillColor: Colors.black,
     border: OutlineInputBorder(
-      borderSide: const BorderSide(width: 1, color: Colors.black),
-      borderRadius: BorderRadius.circular(10),
+      borderSide: const BorderSide(width: 1, color: Colors.white),
+      borderRadius: BorderRadius.circular(20),
     ),
     enabledBorder: OutlineInputBorder(
-      borderSide: const BorderSide(width: 1, color: Colors.black),
-      borderRadius: BorderRadius.circular(10),
+      borderSide: const BorderSide(width: 1, color: Colors.white),
+      borderRadius: BorderRadius.circular(30),
     ),
     focusedBorder: OutlineInputBorder(
-      borderSide: const BorderSide(width: 1, color: Colors.black),
+      borderSide: const BorderSide(width: 1, color: Colors.white),
       borderRadius: BorderRadius.circular(10),
     ),
     contentPadding: const EdgeInsets.symmetric(horizontal: 10),

@@ -5,4 +5,5 @@ const kMainTextstyleWelcomePage = TextStyle(
   fontSize: 40,
   fontWeight: FontWeight.w400,
   letterSpacing: 2,
+  fontFamily: 'highland'
 );

@@ -43,12 +43,15 @@ class _HistoryPageState extends State<HistoryPage> {
                   try {
                     Uint8List historyData =
                         base64Decode(data[index]["prompts"]);
-                    return GestureDetector(
-                      onLongPress: () {
-                        saveImage(historyData);
-                      },
-                      child: MainImageCard(
-                        imagePath: MemoryImage(historyData),
+                    return Container(
+                      constraints: BoxConstraints(minWidth: 200,minHeight: 400),
+                      child: GestureDetector(
+                        onLongPress: () {
+                          saveImage(historyData);
+                        },
+                        child: MainImageCard(
+                          imagePath: MemoryImage(historyData),
+                        ),
                       ),
                     );
                   } catch (e) {

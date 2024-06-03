@@ -19,15 +19,16 @@ class MainTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 10),
-      decoration: kMainTextFieldBoxDecoration,
       child: Form(
         key: _formKey,
         child: TextFormField(
+
+          style: TextStyle(color: Colors.white),
           keyboardType: TextInputType.emailAddress,
           onChanged: (value) {
             changeFunction(value);
           },
-          textAlign: TextAlign.right,
+          textAlign: TextAlign.left,
           decoration: MainTextFieldInputDecoration(label),
           validator: _validateEmail,
           autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -48,7 +49,6 @@ class MainTextFieldAPI extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 10),
-      decoration: kMainTextFieldBoxDecoration,
       child: Form(
         key: _formKey,
         child: TextFormField(
@@ -78,15 +78,15 @@ class MainTextFieldPassword extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 10),
-      decoration: kMainTextFieldBoxDecoration,
       child: Form(
         key: _formKey,
         child: TextFormField(
-          keyboardType: TextInputType.emailAddress,
+          style: TextStyle(color: Colors.white),
+          keyboardType: TextInputType.visiblePassword,
           onChanged: (value) {
             changeFunction(value);
           },
-          textAlign: TextAlign.right,
+          textAlign: TextAlign.left,
           decoration: MainTextFieldInputDecoration(label),
           validator: _validatePassword,
           autovalidateMode: AutovalidateMode.onUserInteraction,
