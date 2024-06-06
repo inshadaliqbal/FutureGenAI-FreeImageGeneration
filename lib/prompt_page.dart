@@ -9,8 +9,8 @@ import 'package:provider/provider.dart';
 
 class PromptPage extends StatelessWidget {
   static const promptPage = 'prompt_page';
-  var imagePath;
-  PromptPage({super.key, required this.imagePath});
+  final imagePath;
+  PromptPage({Key? key, required this.imagePath}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,16 +26,11 @@ class PromptPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Container(
-              decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.7),
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(15),
-                  topRight: Radius.circular(15),
-                ),
-              ),
+              decoration: kPromptPageContainerDecoration,
               height: 400,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -45,14 +40,15 @@ class PromptPage extends StatelessWidget {
                       children: [
                         Text(
                           'Enter Prompt',
-                          style: kMainTextstyleWelcomePage.copyWith(color: Colors.black,fontSize: 20),
+                          style: kMainTextstyleWelcomePage.copyWith(
+                              color: Colors.black, fontSize: 20),
                         ),
                         PromptTextField(
-                            label: "Type a prompt",
-                            changeFunction: (value) {
-                              inputPrompt = value;
-                            }),
-
+                          label: "Type a prompt",
+                          changeFunction: (value) {
+                            inputPrompt = value;
+                          },
+                        ),
                       ],
                     ),
                     MainButton(

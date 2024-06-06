@@ -1,17 +1,17 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:futuregenai/registration_page.dart';
-import 'prompt_page.dart';
-import 'buttons.dart';
-import 'extracted_widgets.dart';
-import 'provider_engine.dart';
+import 'package:futuregenai/prompt_page.dart';
+import 'package:futuregenai/buttons.dart';
+import 'package:futuregenai/extracted_widgets.dart';
+import 'package:futuregenai/provider_engine.dart';
 import 'package:provider/provider.dart';
-import 'constants.dart';
+import 'package:futuregenai/constants.dart';
 
 class LoginPage extends StatelessWidget {
   static const loginPage = 'login_page';
-  LoginPage({super.key});
+
+  LoginPage({Key? key});
+
   String? email;
   String? password;
 
@@ -23,19 +23,17 @@ class LoginPage extends StatelessWidget {
       body: SafeArea(
         child: BlurryHUD(
           childWidget: Padding(
-
-            padding: const EdgeInsets.symmetric(vertical: 30.0,horizontal: 10.0),
+            padding: const EdgeInsets.symmetric(vertical: 30.0, horizontal: 10.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(bottom: 150.0,top: 50),
+                      padding: const EdgeInsets.only(bottom: 150.0, top: 50),
                       child: Text(
                         'Welcome Back!',
                         style: kMainTextstyleWelcomePage,
@@ -57,16 +55,14 @@ class LoginPage extends StatelessWidget {
                         password = value;
                       },
                     ),
-                    SizedBox(
-                      height: 10,
-                    ),
+                    SizedBox(height: 10),
                     MainButton(
                       buttonText: 'Sign IN',
                       buttonFunction: () async {
                         List returnedData = await Provider.of<MainEngine>(
-                            context,
-                            listen: false)
-                            .signIN(email, password);
+                          context,
+                          listen: false,
+                        ).signIN(email, password);
                         if (returnedData[1]) {
                           Navigator.push(
                             context,
@@ -76,7 +72,9 @@ class LoginPage extends StatelessWidget {
                               },
                             ),
                           );
-                        } else {}
+                        } else {
+                          // Handle failure case
+                        }
                       },
                     ),
                   ],
@@ -90,10 +88,11 @@ class LoginPage extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () {
-
                         Navigator.pop(context);
                         Navigator.pushNamed(
-                            context, RegistrationPage.registrationScreen);
+                          context,
+                          RegistrationPage.registrationScreen,
+                        );
                       },
                       child: Text(
                         'Sign UP',

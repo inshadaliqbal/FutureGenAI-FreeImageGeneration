@@ -1,33 +1,29 @@
-import 'package:flutter/foundation.dart';
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
-import 'style.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:blurry_modal_progress_hud/blurry_modal_progress_hud.dart';
-import 'provider_engine.dart';
+import 'package:futuregenai/constants.dart';
+import 'package:futuregenai/provider_engine.dart';
 import 'package:provider/provider.dart';
-
-
+import 'style.dart';
 
 class MainTextField extends StatelessWidget {
-  Function changeFunction;
-  String? label;
-  final _formKey = GlobalKey<FormState>();
+  final Function changeFunction;
+  final String? label;
 
-  MainTextField({super.key, required this.label, required this.changeFunction});
+  MainTextField({Key? key, required this.label, required this.changeFunction})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 10),
       child: Form(
-        key: _formKey,
         child: TextFormField(
-
           style: TextStyle(color: Colors.white),
           keyboardType: TextInputType.emailAddress,
-          onChanged: (value) {
-            changeFunction(value);
-          },
+          onChanged: (value) => changeFunction(value),
           textAlign: TextAlign.left,
           decoration: MainTextFieldInputDecoration(label),
           validator: _validateEmail,
@@ -39,23 +35,20 @@ class MainTextField extends StatelessWidget {
 }
 
 class MainTextFieldAPI extends StatelessWidget {
-  Function changeFunction;
-  String? label;
-  final _formKey = GlobalKey<FormState>();
+  final Function changeFunction;
+  final String? label;
 
-  MainTextFieldAPI({super.key, required this.label, required this.changeFunction});
+  MainTextFieldAPI({Key? key, required this.label, required this.changeFunction})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 10),
       child: Form(
-        key: _formKey,
         child: TextFormField(
           keyboardType: TextInputType.emailAddress,
-          onChanged: (value) {
-            changeFunction(value);
-          },
+          onChanged: (value) => changeFunction(value),
           textAlign: TextAlign.right,
           decoration: MainTextFieldInputDecoration(label),
           autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -66,24 +59,21 @@ class MainTextFieldAPI extends StatelessWidget {
 }
 
 class PromptTextField extends StatelessWidget {
-  Function changeFunction;
-  String? label;
-  final _formKey = GlobalKey<FormState>();
+  final Function changeFunction;
+  final String? label;
 
-  PromptTextField({super.key, required this.label, required this.changeFunction});
+  PromptTextField({Key? key, required this.label, required this.changeFunction})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 10),
       child: Form(
-        key: _formKey,
         child: TextFormField(
           maxLines: 7,
           keyboardType: TextInputType.multiline,
-          onChanged: (value) {
-            changeFunction(value);
-          },
+          onChanged: (value) => changeFunction(value),
           textAlign: TextAlign.left,
           decoration: PromptTextFieldInputDecoration(label),
           autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -94,25 +84,21 @@ class PromptTextField extends StatelessWidget {
 }
 
 class MainTextFieldPassword extends StatelessWidget {
-  Function changeFunction;
-  String? label;
-  final _formKey = GlobalKey<FormState>();
+  final Function changeFunction;
+  final String? label;
 
-  MainTextFieldPassword(
-      {super.key, required this.label, required this.changeFunction});
+  MainTextFieldPassword({Key? key, required this.label, required this.changeFunction})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 10),
       child: Form(
-        key: _formKey,
         child: TextFormField(
           style: TextStyle(color: Colors.white),
           keyboardType: TextInputType.visiblePassword,
-          onChanged: (value) {
-            changeFunction(value);
-          },
+          onChanged: (value) => changeFunction(value),
           textAlign: TextAlign.left,
           decoration: MainTextFieldInputDecoration(label),
           validator: _validatePassword,
@@ -137,22 +123,18 @@ String? _validateEmail(String? value) {
   return null;
 }
 
-
 String? _validatePassword(String? value) {
   if (value == null || value.isEmpty) {
     return 'Please enter a password.';
   }
   if (value.length < 7) {
-    return 'Password should contain min 6 characters';
+    return 'Password should contain at least 6 characters';
   }
   return null;
 }
 
-
 class ProgressIndicatorContainer extends StatelessWidget {
-  const ProgressIndicatorContainer({
-    super.key,
-  });
+  const ProgressIndicatorContainer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -184,16 +166,14 @@ class ProgressIndicatorContainer extends StatelessWidget {
 }
 
 class GradientContainer extends StatelessWidget {
-  const GradientContainer({
-    super.key,
-  });
+  const GradientContainer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [Colors.transparent, Colors.black], // Violet to pink gradient
+          colors: [Colors.transparent, Colors.black],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
         ),
@@ -203,9 +183,9 @@ class GradientContainer extends StatelessWidget {
 }
 
 class BlurryHUD extends StatelessWidget {
-  Widget childWidget;
+  final Widget childWidget;
 
-  BlurryHUD({super.key, required this.childWidget});
+  BlurryHUD({Key? key, required this.childWidget}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -221,11 +201,10 @@ class BlurryHUD extends StatelessWidget {
   }
 }
 
-
-
 class ImageCard extends StatelessWidget {
-  Uint8List? imageBytes;
-  ImageCard({super.key, @required this.imageBytes});
+  final Uint8List? imageBytes;
+
+  ImageCard({Key? key, required this.imageBytes}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -233,18 +212,42 @@ class ImageCard extends StatelessWidget {
       padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
         image: DecorationImage(
-            image: MemoryImage(imageBytes!), fit: BoxFit.fitHeight),
+          image: MemoryImage(imageBytes!),
+          fit: BoxFit.fitHeight,
+        ),
+      ),
+    );
+  }
+}
+
+
+class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
+  final String titleText;
+
+  MainAppBar({required this.titleText});
+
+  @override
+  Size get preferredSize => Size.fromHeight(kToolbarHeight);
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      automaticallyImplyLeading: false,
+      backgroundColor: Colors.transparent,
+      title: Center(
+        child: Text(
+          titleText,
+          style: kAppBarTextStyle,
+        ),
       ),
     );
   }
 }
 
 class BackgroundImage extends StatelessWidget {
+  final String imagePath;
 
-  String imagePath;
-  BackgroundImage({
-    super.key,required this.imagePath
-  });
+  BackgroundImage({Key? key, required this.imagePath}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -252,25 +255,23 @@ class BackgroundImage extends StatelessWidget {
       padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
         image: DecorationImage(
-            image: AssetImage(
-              imagePath,
-            ),
-            fit: BoxFit.cover),
+          image: AssetImage(imagePath),
+          fit: BoxFit.cover,
+        ),
       ),
     );
   }
 }
 
-
 class MainImageCard extends StatelessWidget {
-  ImageProvider imagePath;
+  final ImageProvider imagePath;
 
-  MainImageCard({super.key, required this.imagePath});
+  MainImageCard({Key? key, required this.imagePath}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: BoxConstraints(minWidth: 200,minHeight: 100,maxHeight: 200),
+      constraints: BoxConstraints(minWidth: 200, minHeight: 100, maxHeight: 200),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(40),
         image: DecorationImage(image: imagePath, fit: BoxFit.cover),

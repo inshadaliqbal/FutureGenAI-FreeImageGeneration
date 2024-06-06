@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:futuregenai/login_page.dart';
-import 'package:futuregenai/prompt_page.dart';
-import 'provider_engine.dart';
 import 'package:provider/provider.dart';
-import 'extracted_widgets.dart';
+import 'provider_engine.dart';
 import 'buttons.dart';
 import 'constants.dart';
+import 'login_page.dart';
+import 'prompt_page.dart';
+import 'extracted_widgets.dart';
 
 class RegistrationPage extends StatefulWidget {
-  static String registrationScreen = 'registration_screen';
-  const RegistrationPage({Key? key});
+  static const String registrationScreen = 'registration_screen';
+
+  const RegistrationPage({Key? key}) : super(key: key);
 
   @override
   State<RegistrationPage> createState() => _RegistrationPageState();
@@ -27,8 +28,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
       body: SafeArea(
         child: BlurryHUD(
           childWidget: Padding(
-            padding:
-                const EdgeInsets.symmetric(vertical: 30.0, horizontal: 10.0),
+            padding: const EdgeInsets.symmetric(vertical: 30.0, horizontal: 10.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -67,9 +67,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
                       buttonText: 'REGISTER',
                       buttonFunction: () async {
                         List returnedData = await Provider.of<MainEngine>(
-                                context,
-                                listen: false)
-                            .signUP(email, password);
+                          context,
+                          listen: false,
+                        ).signUP(email, password);
                         if (returnedData[1]) {
                           Navigator.push(
                             context,

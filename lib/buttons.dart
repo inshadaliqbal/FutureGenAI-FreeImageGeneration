@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:futuregenai/constants.dart';
 import 'style.dart';
 
 class MainButton extends StatelessWidget {
-  Function buttonFunction;
-  String? buttonText;
+  final Function buttonFunction;
+  final String? buttonText;
 
-  MainButton(
-      {super.key, required this.buttonFunction, @required this.buttonText});
+  MainButton({Key? key, required this.buttonFunction, @required this.buttonText})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        gradient: LinearGradient(
+        gradient: const LinearGradient(
           colors: [
             Color(0xFF8A2BE2),
-            Color(0xFFFF69B4)
+            Color(0xFFFF69B4),
           ], // Violet to pink gradient
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
@@ -28,21 +29,15 @@ class MainButton extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30),
           ),
-          backgroundColor: Colors
-              .transparent, // Ensure background is transparent to show gradient
+          backgroundColor:
+          Colors.transparent, // Ensure background is transparent to show gradient
         ),
         onPressed: () {
           buttonFunction();
         },
         child: Text(
           buttonText!,
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 15,
-            fontWeight: FontWeight.w400,
-            letterSpacing: 2,
-            fontFamily: 'highland'
-          ),
+          style: kMainButtonTextStyle
         ),
       ),
     );

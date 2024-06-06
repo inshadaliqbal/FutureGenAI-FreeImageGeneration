@@ -1,8 +1,12 @@
-
 import 'package:flutter/material.dart';
 
-
-
+Decoration kPromptPageContainerDecoration = BoxDecoration(
+  color: Colors.white.withOpacity(0.7),
+  borderRadius: BorderRadius.only(
+    topLeft: Radius.circular(15),
+    topRight: Radius.circular(15),
+  ),
+);
 
 ButtonStyle kMainButtonStyle = ButtonStyle(
   elevation: MaterialStateProperty.all(8.0),
@@ -17,7 +21,6 @@ ButtonStyle kMainButtonStyle = ButtonStyle(
     const Size(300, 50),
   ),
 );
-
 
 InputDecoration MainTextFieldInputDecoration(String? label) {
   return InputDecoration(
@@ -45,7 +48,9 @@ InputDecoration PromptTextFieldInputDecoration(String? label) {
   return InputDecoration(
     alignLabelWithHint: true,
     labelText: label,
-    labelStyle: const TextStyle(letterSpacing: 3,),
+    labelStyle: const TextStyle(
+      letterSpacing: 3,
+    ),
     filled: true,
     fillColor: Colors.white,
     border: OutlineInputBorder(
@@ -64,13 +69,9 @@ InputDecoration PromptTextFieldInputDecoration(String? label) {
   );
 }
 
-
 BoxDecoration kMainButtonContainerDecoration = BoxDecoration(
   gradient: LinearGradient(
-    colors: [
-      Color(0xFF8A2BE2),
-      Color(0xFFFF69B4)
-    ], // Violet to pink gradient
+    colors: [Color(0xFF8A2BE2), Color(0xFFFF69B4)], // Violet to pink gradient
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
   ),
