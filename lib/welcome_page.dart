@@ -75,11 +75,4 @@ class _WelcomePageState extends State<WelcomePage> {
       ),
     );
   }
-
-  // @override
-  // void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  //   super.debugFillProperties(properties);
-  //   properties.add(DiagnosticsProperty('bgImageBytes', bgImageBytes));
-  //   properties.add(DiagnosticsProperty('bgImageBytes', bgImageBytes));
-  // }
 }

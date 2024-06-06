@@ -16,6 +16,7 @@ class PromptPage extends StatelessWidget {
   Widget build(BuildContext context) {
     String? inputPrompt;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Container(
         decoration: BoxDecoration(
           image:

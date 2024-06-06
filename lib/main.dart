@@ -3,12 +3,10 @@ import 'package:futuregenai/authentication_page.dart';
 import 'package:futuregenai/history_page.dart';
 import 'package:futuregenai/image_page.dart';
 import 'package:futuregenai/login_page.dart';
-import 'package:futuregenai/prompt_page.dart';
 import 'package:futuregenai/provider_engine.dart';
 import 'package:futuregenai/registration_page.dart';
 import 'package:futuregenai/welcome_page.dart';
 import 'package:provider/provider.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 void main() {
   runApp(FutureGenAI());
