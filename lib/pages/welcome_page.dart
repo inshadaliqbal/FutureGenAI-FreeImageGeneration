@@ -1,9 +1,9 @@
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
-import 'package:futuregenai/reusable_widgets.dart';
+import 'package:futuregenai/widgets/reusable_widgets.dart';
 import 'package:provider/provider.dart';
-import 'provider_engine.dart';
-import 'extracted_widgets.dart';
+import '../helpers/provider_engine.dart';
+import '../widgets/extracted_widgets.dart';
 
 class WelcomePage extends StatefulWidget {
   static const String welcomePage = 'welcome_page';

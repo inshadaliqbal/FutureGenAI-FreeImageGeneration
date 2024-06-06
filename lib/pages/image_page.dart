@@ -1,13 +1,15 @@
 import 'dart:typed_data';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:futuregenai/buttons.dart';
-import 'package:futuregenai/constants.dart';
-import 'package:futuregenai/provider_engine.dart';
+import 'package:futuregenai/appbars/appbar.dart';
+import 'package:futuregenai/buttons/buttons.dart';
+import 'package:futuregenai/style/constants.dart';
+import 'package:futuregenai/helpers/provider_engine.dart';
+import 'package:futuregenai/widgets/reusable_widgets.dart';
 import 'package:provider/provider.dart';
 import 'history_page.dart';
-import 'functions.dart';
-import 'extracted_widgets.dart';
+import '../helpers/functions.dart';
+import '../widgets/extracted_widgets.dart';
 
 class ImagePage extends StatelessWidget {
   static const imagePage = 'image_page';

@@ -1,12 +1,14 @@
 import 'dart:convert';
 import 'dart:typed_data';
-import 'package:futuregenai/constants.dart';
-import 'package:futuregenai/extracted_widgets.dart';
+import 'package:futuregenai/appbars/appbar.dart';
+import 'package:futuregenai/style/constants.dart';
+import 'package:futuregenai/widgets/extracted_widgets.dart';
+import 'package:futuregenai/widgets/reusable_widgets.dart';
 
-import 'functions.dart';
+import '../helpers/functions.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:futuregenai/provider_engine.dart';
+import 'package:futuregenai/helpers/provider_engine.dart';
 import 'package:provider/provider.dart';
 
 class HistoryPage extends StatefulWidget {

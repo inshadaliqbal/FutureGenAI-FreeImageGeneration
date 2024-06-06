@@ -1,22 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:futuregenai/pages/registration_page.dart';
+import 'package:futuregenai/pages/prompt_page.dart';
+import 'package:futuregenai/buttons/buttons.dart';
+import 'package:futuregenai/widgets/extracted_widgets.dart';
+import 'package:futuregenai/helpers/provider_engine.dart';
+import 'package:futuregenai/widgets/reusable_widgets.dart';
 import 'package:provider/provider.dart';
-import 'provider_engine.dart';
-import 'buttons.dart';
-import 'constants.dart';
-import 'login_page.dart';
-import 'prompt_page.dart';
-import 'extracted_widgets.dart';
+import 'package:futuregenai/style/constants.dart';
 
-class RegistrationPage extends StatefulWidget {
-  static const String registrationScreen = 'registration_screen';
+class LoginPage extends StatelessWidget {
+  static const loginPage = 'login_page';
 
-  const RegistrationPage({Key? key}) : super(key: key);
+  LoginPage({Key? key});
 
-  @override
-  State<RegistrationPage> createState() => _RegistrationPageState();
-}
-
-class _RegistrationPageState extends State<RegistrationPage> {
   String? email;
   String? password;
 
@@ -40,12 +36,12 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     Padding(
                       padding: const EdgeInsets.only(bottom: 150.0, top: 50),
                       child: Text(
-                        'Welcome!',
+                        'Welcome Back!',
                         style: kMainTextstyleWelcomePage,
                       ),
                     ),
                     Text(
-                      'Please register',
+                      'Please login to your account',
                       style: TextStyle(color: Colors.white),
                     ),
                     MainTextField(
@@ -60,16 +56,14 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         password = value;
                       },
                     ),
-                    SizedBox(
-                      height: 10,
-                    ),
+                    SizedBox(height: 10),
                     MainButton(
-                      buttonText: 'REGISTER',
+                      buttonText: 'Sign IN',
                       buttonFunction: () async {
                         List returnedData = await Provider.of<MainEngine>(
                           context,
                           listen: false,
-                        ).signUP(email, password);
+                        ).signIN(email, password);
                         if (returnedData[1]) {
                           Navigator.push(
                             context,
@@ -79,7 +73,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
                               },
                             ),
                           );
-                        } else {}
+                        } else {
+                          // Handle failure case
+                        }
                       },
                     ),
                   ],
@@ -88,16 +84,19 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Already have an account? ",
+                      "Don't have an account? ",
                       style: TextStyle(color: Colors.white),
                     ),
                     GestureDetector(
                       onTap: () {
                         Navigator.pop(context);
-                        Navigator.pushNamed(context, LoginPage.loginPage);
+                        Navigator.pushNamed(
+                          context,
+                          RegistrationPage.registrationScreen,
+                        );
                       },
                       child: Text(
-                        'Sign IN',
+                        'Sign UP',
                         style: TextStyle(color: Colors.white),
                       ),
                     ),

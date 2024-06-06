@@ -23,3 +23,4 @@ Future saveImage(Uint8List imageData) async {
     // Show a snackbar or other notification to the user
   }
 }
+

@@ -1,11 +1,15 @@
 import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
-import 'package:futuregenai/authentication_page.dart';
-import 'package:futuregenai/buttons.dart';
-import 'package:futuregenai/constants.dart';
-import 'package:futuregenai/extracted_widgets.dart';
-import 'package:futuregenai/provider_engine.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:blurry_modal_progress_hud/blurry_modal_progress_hud.dart';
+import 'package:futuregenai/pages/authentication_page.dart';
+import 'package:futuregenai/buttons/buttons.dart';
+import 'package:futuregenai/style/constants.dart';
+import 'package:futuregenai/helpers/provider_engine.dart';
+import 'package:futuregenai/widgets/reusable_widgets.dart';
 import 'package:provider/provider.dart';
+import '../style/style.dart';
 
 
 class WelcomePageFutureBuilder extends StatelessWidget {

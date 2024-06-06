@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:futuregenai/constants.dart';
-import 'style.dart';
+import 'package:futuregenai/style/constants.dart';
+import '../style/style.dart';
 
 class MainButton extends StatelessWidget {
   final Function buttonFunction;

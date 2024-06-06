@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:futuregenai/buttons.dart';
-import 'package:futuregenai/constants.dart';
-import 'package:futuregenai/image_page.dart';
-import 'package:futuregenai/style.dart';
-import 'extracted_widgets.dart';
-import 'provider_engine.dart';
+import 'package:futuregenai/buttons/buttons.dart';
+import 'package:futuregenai/style/constants.dart';
+import 'package:futuregenai/pages/image_page.dart';
+import 'package:futuregenai/widgets/reusable_widgets.dart';
+import 'package:futuregenai/style/style.dart';
+import '../widgets/extracted_widgets.dart';
+import '../helpers/provider_engine.dart';
 import 'package:provider/provider.dart';
 
 class PromptPage extends StatelessWidget {

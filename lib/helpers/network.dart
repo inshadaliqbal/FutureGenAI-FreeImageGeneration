@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:async';
-import 'package:futuregenai/secret_const.dart';
+import 'package:futuregenai/helpers/secret_const.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/foundation.dart';
 import 'package:together_ai_sdk/together_ai_sdk.dart';

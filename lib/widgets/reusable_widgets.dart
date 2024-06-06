@@ -1,12 +1,14 @@
 import 'dart:typed_data';
-
+import 'package:blurry_modal_progress_hud/blurry_modal_progress_hud.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:blurry_modal_progress_hud/blurry_modal_progress_hud.dart';
-import 'package:futuregenai/constants.dart';
-import 'package:futuregenai/provider_engine.dart';
+import 'package:futuregenai/pages/authentication_page.dart';
+import 'package:futuregenai/buttons/buttons.dart';
+import 'package:futuregenai/style/constants.dart';
+import 'package:futuregenai/widgets/extracted_widgets.dart';
+import 'package:futuregenai/helpers/provider_engine.dart';
+import 'package:futuregenai/style/style.dart';
 import 'package:provider/provider.dart';
-import 'style.dart';
 
 class MainTextField extends StatelessWidget {
   final Function changeFunction;
@@ -165,42 +167,6 @@ class ProgressIndicatorContainer extends StatelessWidget {
   }
 }
 
-class GradientContainer extends StatelessWidget {
-  const GradientContainer({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [Colors.transparent, Colors.black],
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-        ),
-      ),
-    );
-  }
-}
-
-class BlurryHUD extends StatelessWidget {
-  final Widget childWidget;
-
-  BlurryHUD({Key? key, required this.childWidget}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return BlurryModalProgressHUD(
-      inAsyncCall: Provider.of<MainEngine>(context).getLoadingBool(),
-      blurEffectIntensity: 4,
-      progressIndicator: ProgressIndicatorContainer(),
-      dismissible: false,
-      opacity: 0.4,
-      color: Colors.black,
-      child: childWidget,
-    );
-  }
-}
-
 class ImageCard extends StatelessWidget {
   final Uint8List? imageBytes;
 
@@ -214,30 +180,6 @@ class ImageCard extends StatelessWidget {
         image: DecorationImage(
           image: MemoryImage(imageBytes!),
           fit: BoxFit.fitHeight,
-        ),
-      ),
-    );
-  }
-}
-
-
-class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final String titleText;
-
-  MainAppBar({required this.titleText});
-
-  @override
-  Size get preferredSize => Size.fromHeight(kToolbarHeight);
-
-  @override
-  Widget build(BuildContext context) {
-    return AppBar(
-      automaticallyImplyLeading: false,
-      backgroundColor: Colors.transparent,
-      title: Center(
-        child: Text(
-          titleText,
-          style: kAppBarTextStyle,
         ),
       ),
     );
@@ -276,6 +218,26 @@ class MainImageCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(40),
         image: DecorationImage(image: imagePath, fit: BoxFit.cover),
       ),
+    );
+  }
+}
+
+
+class BlurryHUD extends StatelessWidget {
+  final Widget childWidget;
+
+  BlurryHUD({Key? key, required this.childWidget}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlurryModalProgressHUD(
+      inAsyncCall: Provider.of<MainEngine>(context).getLoadingBool(),
+      blurEffectIntensity: 4,
+      progressIndicator: ProgressIndicatorContainer(),
+      dismissible: false,
+      opacity: 0.4,
+      color: Colors.black,
+      child: childWidget,
     );
   }
 }

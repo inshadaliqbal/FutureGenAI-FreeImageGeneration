@@ -77,3 +77,20 @@ BoxDecoration kMainButtonContainerDecoration = BoxDecoration(
   ),
   borderRadius: BorderRadius.circular(30),
 );
+
+class GradientContainer extends StatelessWidget {
+  const GradientContainer({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [Colors.transparent, Colors.black],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+        ),
+      ),
+    );
+  }
+}

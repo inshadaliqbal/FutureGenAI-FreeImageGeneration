@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:futuregenai/authentication_page.dart';
-import 'package:futuregenai/history_page.dart';
-import 'package:futuregenai/image_page.dart';
-import 'package:futuregenai/login_page.dart';
-import 'package:futuregenai/provider_engine.dart';
-import 'package:futuregenai/registration_page.dart';
-import 'package:futuregenai/welcome_page.dart';
+import 'package:futuregenai/pages/authentication_page.dart';
+import 'package:futuregenai/pages/history_page.dart';
+import 'package:futuregenai/pages/image_page.dart';
+import 'package:futuregenai/pages/login_page.dart';
+import 'package:futuregenai/helpers/provider_engine.dart';
+import 'package:futuregenai/pages/registration_page.dart';
+import 'package:futuregenai/pages/welcome_page.dart';
 import 'package:provider/provider.dart';
 
 void main() {

@@ -1,17 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:futuregenai/registration_page.dart';
-import 'package:futuregenai/prompt_page.dart';
-import 'package:futuregenai/buttons.dart';
-import 'package:futuregenai/extracted_widgets.dart';
-import 'package:futuregenai/provider_engine.dart';
+import 'package:futuregenai/widgets/reusable_widgets.dart';
 import 'package:provider/provider.dart';
-import 'package:futuregenai/constants.dart';
+import '../helpers/provider_engine.dart';
+import '../buttons/buttons.dart';
+import '../style/constants.dart';
+import 'login_page.dart';
+import 'prompt_page.dart';
+import '../widgets/extracted_widgets.dart';
 
-class LoginPage extends StatelessWidget {
-  static const loginPage = 'login_page';
+class RegistrationPage extends StatefulWidget {
+  static const String registrationScreen = 'registration_screen';
 
-  LoginPage({Key? key});
+  const RegistrationPage({Key? key}) : super(key: key);
 
+  @override
+  State<RegistrationPage> createState() => _RegistrationPageState();
+}
+
+class _RegistrationPageState extends State<RegistrationPage> {
   String? email;
   String? password;
 
@@ -35,12 +41,12 @@ class LoginPage extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(bottom: 150.0, top: 50),
                       child: Text(
-                        'Welcome Back!',
+                        'Welcome!',
                         style: kMainTextstyleWelcomePage,
                       ),
                     ),
                     Text(
-                      'Please login to your account',
+                      'Please register',
                       style: TextStyle(color: Colors.white),
                     ),
                     MainTextField(
@@ -55,14 +61,16 @@ class LoginPage extends StatelessWidget {
                         password = value;
                       },
                     ),
-                    SizedBox(height: 10),
+                    SizedBox(
+                      height: 10,
+                    ),
                     MainButton(
-                      buttonText: 'Sign IN',
+                      buttonText: 'REGISTER',
                       buttonFunction: () async {
                         List returnedData = await Provider.of<MainEngine>(
                           context,
                           listen: false,
-                        ).signIN(email, password);
+                        ).signUP(email, password);
                         if (returnedData[1]) {
                           Navigator.push(
                             context,
@@ -72,9 +80,7 @@ class LoginPage extends StatelessWidget {
                               },
                             ),
                           );
-                        } else {
-                          // Handle failure case
-                        }
+                        } else {}
                       },
                     ),
                   ],
@@ -83,19 +89,16 @@ class LoginPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Don't have an account? ",
+                      "Already have an account? ",
                       style: TextStyle(color: Colors.white),
                     ),
                     GestureDetector(
                       onTap: () {
                         Navigator.pop(context);
-                        Navigator.pushNamed(
-                          context,
-                          RegistrationPage.registrationScreen,
-                        );
+                        Navigator.pushNamed(context, LoginPage.loginPage);
                       },
                       child: Text(
-                        'Sign UP',
+                        'Sign IN',
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
