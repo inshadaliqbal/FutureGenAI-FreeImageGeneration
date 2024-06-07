@@ -45,7 +45,7 @@ class PromptPage extends StatelessWidget {
                               color: Colors.black, fontSize: 20),
                         ),
                         PromptTextField(
-                          label: "Type a prompt",
+                          label: "Type a prompt ",
                           changeFunction: (value) {
                             inputPrompt = value;
                           },
