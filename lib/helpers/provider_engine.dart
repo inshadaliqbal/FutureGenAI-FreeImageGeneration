@@ -16,8 +16,9 @@ import 'package:flutter/foundation.dart';
 class MainEngine extends ChangeNotifier {
   bool? loadingBool = false;
   FirebaseAuth? _firebaseAuth;
-  String? currentUserEmail;
   FirebaseFirestore? _firestore;
+
+  String? currentUserEmail;
   Uint8List? welcomePageBG;
   var streamFirestoreSnapshot;
 

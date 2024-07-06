@@ -36,22 +36,22 @@ class LoginPage extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(bottom: 150.0, top: 50),
                       child: Text(
-                        'Welcome Back!',
+                        'Welcome Back! ',
                         style: kMainTextstyleWelcomePage,
                       ),
                     ),
                     Text(
-                      'Please login to your account',
+                      'Please login to your account ',
                       style: TextStyle(color: Colors.white),
                     ),
-                    MainTextField(
-                      label: 'EMAIL',
+                    MainTextFieldSign(
+                      label: 'EMAIL ',
                       changeFunction: (value) {
                         email = value;
                       },
                     ),
                     MainTextFieldPassword(
-                      label: 'PASSWORD',
+                      label: 'PASSWORD ',
                       changeFunction: (value) {
                         password = value;
                       },

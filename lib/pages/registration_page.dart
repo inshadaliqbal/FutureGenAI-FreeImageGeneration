@@ -49,7 +49,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                       'Please register',
                       style: TextStyle(color: Colors.white),
                     ),
-                    MainTextField(
+                    MainTextFieldSign(
                       label: 'EMAIL',
                       changeFunction: (value) {
                         email = value;

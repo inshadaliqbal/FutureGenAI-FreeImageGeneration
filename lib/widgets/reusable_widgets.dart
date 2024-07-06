@@ -10,11 +10,11 @@ import 'package:futuregenai/helpers/provider_engine.dart';
 import 'package:futuregenai/style/style.dart';
 import 'package:provider/provider.dart';
 
-class MainTextField extends StatelessWidget {
+class MainTextFieldSign extends StatelessWidget {
   final Function changeFunction;
   final String? label;
 
-  MainTextField({Key? key, required this.label, required this.changeFunction})
+  MainTextFieldSign({Key? key, required this.label, required this.changeFunction})
       : super(key: key);
 
   @override
