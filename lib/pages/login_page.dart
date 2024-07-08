@@ -36,16 +36,16 @@ class LoginPage extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(bottom: 150.0, top: 50),
                       child: Text(
-                        'Welcome Back!',
+                        'Welcome Back! ',
                         style: kMainTextstyleWelcomePage,
                       ),
                     ),
                     Text(
-                      'Please login to your account',
+                      'Please login to your account ',
                       style: TextStyle(color: Colors.white),
                     ),
                     MainTextFieldSign(
-                      label: 'EMAIL',
+                      label: 'EMAIL ',
                       changeFunction: (value) {
                         email = value;
                       },
@@ -58,7 +58,7 @@ class LoginPage extends StatelessWidget {
                     ),
                     SizedBox(height: 10),
                     MainButton(
-                      buttonText: 'Sign IN',
+                      buttonText: 'Sign IN ',
                       buttonFunction: () async {
                         List returnedData = await Provider.of<MainEngine>(
                           context,
