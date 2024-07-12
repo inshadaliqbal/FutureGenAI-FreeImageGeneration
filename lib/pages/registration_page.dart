@@ -50,13 +50,13 @@ class _RegistrationPageState extends State<RegistrationPage> {
                       style: TextStyle(color: Colors.white),
                     ),
                     MainTextFieldSign(
-                      label: 'EMAIL',
+                      label: 'EMAIL ',
                       changeFunction: (value) {
                         email = value;
                       },
                     ),
                     MainTextFieldPassword(
-                      label: 'PASSWORD',
+                      label: 'PASSWORD ',
                       changeFunction: (value) {
                         password = value;
                       },
