@@ -65,7 +65,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                       height: 10,
                     ),
                     MainButton(
-                      buttonText: 'REGISTER',
+                      buttonText: 'REGISTER ',
                       buttonFunction: () async {
                         List returnedData = await Provider.of<MainEngine>(
                           context,
