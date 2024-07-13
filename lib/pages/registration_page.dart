@@ -50,13 +50,13 @@ class _RegistrationPageState extends State<RegistrationPage> {
                       style: TextStyle(color: Colors.white),
                     ),
                     MainTextFieldSign(
-                      label: 'EMAIL ',
+                      label: 'EMAIL',
                       changeFunction: (value) {
                         email = value;
                       },
                     ),
                     MainTextFieldPassword(
-                      label: 'PASSWORD ',
+                      label: 'PASSWORD',
                       changeFunction: (value) {
                         password = value;
                       },
@@ -65,7 +65,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                       height: 10,
                     ),
                     MainButton(
-                      buttonText: 'REGISTER ',
+                      buttonText: 'REGISTER',
                       buttonFunction: () async {
                         List returnedData = await Provider.of<MainEngine>(
                           context,
