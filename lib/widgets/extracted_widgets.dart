@@ -38,7 +38,7 @@ class WelcomePageFutureBuilder extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     const Text(
-                      'Imagination to Image ',
+                      'Imagination to Image  ',
                       style: kMainTextstyleWelcomePage,
                     ),
                     SizedBox(height: 30),
