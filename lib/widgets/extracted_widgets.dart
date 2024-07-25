@@ -38,7 +38,7 @@ class WelcomePageFutureBuilder extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     const Text(
-                      'Imagination to Image  ',
+                      'Imagination to Image',
                       style: kMainTextstyleWelcomePage,
                     ),
                     SizedBox(height: 30),
@@ -46,7 +46,7 @@ class WelcomePageFutureBuilder extends StatelessWidget {
                       buttonFunction: () {
                         Navigator.pushNamed(context, AuthenticationPage.authenticationPage);
                       },
-                      buttonText: "Get Started",
+                      buttonText: "Get Started ",
                     ),
                   ],
                 ),
